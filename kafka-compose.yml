@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+
+  postgres:
+    image: postgres:alpine
+    container_name: pgServer
+    environment:
+      - POSTGRES_PASSWORD=102030
+      - LANG=pt_BR.utf8
+    ports:
+      - "5432:5432"
+    volumes:
+      - /home/glesio/workspace/docker/env/database/postgresql:/var/lib/postgresql/data
+    networks:
+      default:
+        aliases:
+          - postgres
+  # mongo:
+  #   image: mongo:4.2.8
+  #   container_name: mongo
+  #   restart: unless-stopped
+  #   ports:
+  #     - 27017:27017
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: admin
+  #     MONGO_INITDB_ROOT_PASSWORD: admin123
+  #   volumes:
+  #     - /home/glesio/workspace/docker/env/database/mongo:/data/db
+  #     - /home/glesio/workspace/docker/env/database/mongo/configdb:/data/configdb

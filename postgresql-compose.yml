@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: myPostgreSQL
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=102030
+      - LANG=pt_BR.utf8
+    ports:
+      - "5433:5432"
+    volumes:
+      - /media/glesio/slave3/storage/database/postgresql:/var/lib/postgresql/data
+    networks:
+      - postgres-compose-network
+networks: 
+  postgres-compose-network:
+    driver: bridge

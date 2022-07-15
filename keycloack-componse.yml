@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  keycloak:
+      image: quay.io/keycloak/keycloak:legacy
+      environment:
+        DB_VENDOR: POSTGRES
+        DB_DATABASE: keycloak_db
+        DB_USER: postgres
+        DB_SCHEMA: public
+        DB_PASSWORD: postgres
+        KEYCLOAK_USER: admin
+        KEYCLOAK_PASSWORD: admin
+      ports:
+        - 8023:8080

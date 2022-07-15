@@ -2,17 +2,22 @@ version: "3.8"
 services:
   redmine:
     image: redmine
-    restart: always
+    container_name: redmine
+    # restart: always
     ports:
       - 80:3000
     volumes:
-      -  /home/glesio/workspace/docker/var/redmine/files:/usr/src/redmine/files
-      -  /home/glesio/workspace/docker/var/redmine/plugins:/usr/src/redmine/plugins
-      -  /home/glesio/workspace/docker/var/redmine/vendor/plugins:/usr/src/redmine/vendor/plugins
-      -  /home/glesio/workspace/docker/var/redmine/public/themes:/usr/src/redmine/public/themes
+      -  /media/glesio/slave4/storage/redmine/files:/usr/src/redmine/files
+      -  /media/glesio/slave4/storage/redmine/plugins:/usr/src/redmine/plugins
+      -  /media/glesio/slave4/storage/redmine/vendor/plugins:/usr/src/redmine/vendor/plugins
+      -  /media/glesio/slave4/storage/redmine/public/themes:/usr/src/redmine/public/themes
     environment:
       REDMINE_DB_POSTGRES: postgres
       REDMINE_DB_USERNAME: postgres
       REDMINE_DB_PASSWORD: 102030
-      REDMINE_DB_DATABASE: redmine
-      REDMINE_DB_ENCODING: utf8
+      REDMINE_DB_DATABASE: redmine 
+    networks:
+      - postgres-compose-network
+networks: 
+  postgres-compose-network:
+    driver: bridge
